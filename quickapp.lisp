@@ -59,6 +59,10 @@
 (defvar *project-description* "test")
 (defvar *project-author* "test")
 (defvar *project-dependencies* nil)
+(defvar *my-directory* (asdf:system-source-directory :quickapp))
+
+(defun from-my-path (filename)
+  (merge-pathnames filename *my-directory*))
 
 (defun quickapp (project-path &key
 								(project-name nil pp-p)
@@ -78,11 +82,11 @@
 	(setf *project-dependencies* dependencies)
 	(ensure-directories-exist (make-pathname :directory
 											 project-path))
-	(let ((makefile (eval-template-file "Makefile.template"))
-		  (package  (eval-template-file "package.lisp.template"))
-		  (projectasd (eval-template-file "project.asd.template"))
-		  (project  (eval-template-file "project.lisp.template"))
-		  (slime (eval-template-file "slime.lisp.template")))
+	(let ((makefile (eval-template-file (from-my-path "Makefile.template")))
+		  (package  (eval-template-file (from-my-path "package.lisp.template")))
+		  (projectasd (eval-template-file (from-my-path "project.asd.template")))
+		  (project  (eval-template-file (from-my-path "project.lisp.template")))
+		  (slime (eval-template-file (from-my-path "slime.lisp.template"))))
 	  (spit-file (make-pathname :directory project-path
 								:name "Makefile")
 				 makefile)
