@@ -1,0 +1,2 @@
+(load "#(quickapp:get-project).asd")
+(ql:quickload "#(quickapp:get-project)")

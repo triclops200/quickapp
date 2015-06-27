@@ -1,0 +1,12 @@
+(in-package #:#(quickapp:get-project))
+
+(defun -main (&optional args)
+  (format t "~a~%" "I don't do much yet"))
+
+(defun disable-debugger ()
+	(labels
+		((exit (c h)
+		   (declare (ignore h))
+		   (format t "~a~%" c)
+		   (sb-ext:exit)))
+	  (setf *debugger-hook* #'exit)))
