@@ -8,6 +8,7 @@ $(OUT): buildapp #(quickapp:get-project).lisp quicklisp-manifest.txt
 				--load-system asdf \
 				--eval '(push "$(ROOT_DIR)/" asdf:*central-registry*)' \
 				--load-system $(PACKAGE) \
+				--eval '($(PACKAGE):disable-debugger)' \
 				--output $(OUT) --entry $(PACKAGE):$(ENTRY)
 
 quicklisp-manifest.txt:
