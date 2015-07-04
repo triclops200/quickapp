@@ -59,6 +59,13 @@ Example Usage:
 ./quickapp test-project \
   -d"(:sdl2 :cl-opengl)" \
   ```
+Running this like: `./quickapp test-project -d"(:sdl2 :cl-opengl)" --project-author=cluser`
+results in a list like this returned as parsed-args
+```lisp
+(("test-project")
+ (("project-author" . "cluser") ("dependencies" . "(:sdl2 :cl-opengl)")))
+```
+
 
 #License
 Licensed under Modified BSD License.
