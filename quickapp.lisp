@@ -226,6 +226,8 @@ appropriately"
 			(nth 2 argdef))))
 
 (defun generate-flag-string (arg-defs)
+  "Generate the part of the help string that documents the options
+from the arg definition"
   (let ((l (+ 2 (loop for x in arg-defs
 				   maximizing (length (second (fix-argdef x))) into l
 				   finally (return l)))))
