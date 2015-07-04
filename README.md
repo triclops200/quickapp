@@ -48,7 +48,7 @@ Running that application with the --help flag results in:
 ```
 Usage: ./quickapp PROJECT-PATH [OPTIONS]
 OPTIONS:
-  -h  --help                              
+  -h  --help                              Display this help menu
   -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
   -p  --project-name=NAME                 The project name
   -a  --project-author=NAME               The name of the author
