@@ -190,21 +190,27 @@ appropriately"
 	(list (reverse unnamed) named)))
 
 (defun fix-named-arg (arg-names arg)
+  "This unifies the named arguments to use the long form."
   (let ((x (assoc (first arg) arg-names :test #'string=)))
 	(if x
 		(cons (second x) (cdr arg))
 		arg)))
 
 (defun fix-named-args (arg-names args)
+  "Fix all of the named args to use the long form"
   (let ((named-args (cadr args)))
 	(list (first args)
 		  (mapcar (lambda (arg) (fix-named-arg arg-names arg)) named-args))))
 
 (defun parse-args (arg-defs args)
+  "Actually calls all the functions to parse the args into the correct
+form."
   (let ((parsed-args (parse-unfixed-args args)))
 	(fix-named-args arg-defs parsed-args)))
 
 (defun fill-string (str fill-char n)
+  "Fill a string with a character until it is at least as long as n
+specifies"
   (with-string-stream st
 	(write-string str st)
 	(loop-rec ((n (- n (length str))))
@@ -213,13 +219,14 @@ appropriately"
 		 (rec (1- n))))))
 
 (defun fix-argdef (argdef)
-  (if (> (length argdef) 3)
+  "This is a formatter for an argdef to display properly"
+  (if (> (length argdef) 3) ;; If we have an assignment type
 	  (list (if (> (length (first argdef)) 0)
 				(concatenate 'string "  -"  (first argdef))
 				"  ")
-			(concatenate 'string "--" (second argdef) "=" (third argdef))
+			(concatenate 'string "--" (second argdef) "=" (third argdef)) ;;Use the name given as a =
 			(nth 3 argdef))
-	  (list (if (> (length (first argdef)) 0)
+	  (list (if (> (length (first argdef)) 0) ;;otherwise, we have a boolean flag
 				(concatenate 'string "  -" (first argdef))
 				"  ")
 			(concatenate 'string "--" (second argdef))
@@ -230,12 +237,12 @@ appropriately"
 from the arg definition"
   (let ((l (+ 2 (loop for x in arg-defs
 				   maximizing (length (second (fix-argdef x))) into l
-				   finally (return l)))))
-	(format nil "~{~a~%~}"
+				   finally (return l))))) ;; Get the maximum length of the argdef longform names
+	(format nil "~{~a~%~}" ;; Combine the argdef strings
 			(mapcar (lambda (argdef)
-					  (apply #'concatenate 'string
-							 (list (fill-string (first argdef) #\Space 6)
-								   (fill-string (second argdef) #\Space l)
-								   (car (last argdef)))))
+					  (apply #'concatenate 'string 
+							 (list (fill-string (first argdef) #\Space 6) ;; Two spaces before, two in length, two spaces after
+								   (fill-string (second argdef) #\Space l) ;; l is the maxlength + 2, so we get 2 spaces at least
+								   (car (last argdef))))) ;; car (last argdef) is the description
 					(mapcar #'fix-argdef arg-defs)))))
 
