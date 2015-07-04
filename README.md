@@ -19,7 +19,7 @@ For easy interactive development, just load the generated "slime.lisp" file then
 ```
 
 # Arg parsing utilities
-This library also contains two functions for dealing with argument handling for the generated application: parse-args and generate-flag-string.
+This library also contains two functions for dealing with argument handling for the generated application: `(quickapp:parse-args)` and `(quickapp:generate-flag-string)`.
 
 An example usage is shown below
 
@@ -48,7 +48,7 @@ Running that application with the --help flag results in:
 ```
 Usage: ./quickapp PROJECT-PATH [OPTIONS]
 OPTIONS:
-  -h  --help                              
+  -h  --help                              Display this help menu
   -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
   -p  --project-name=NAME                 The project name
   -a  --project-author=NAME               The name of the author
@@ -59,6 +59,13 @@ Example Usage:
 ./quickapp test-project \
   -d"(:sdl2 :cl-opengl)" \
   ```
+Running this like: `./quickapp test-project -d"(:sdl2 :cl-opengl)" --project-author=cluser`
+results in a list like this returned as parsed-args
+```lisp
+(("test-project")
+ (("project-author" . "cluser") ("dependencies" . "(:sdl2 :cl-opengl)")))
+```
+
 
 #License
 Licensed under Modified BSD License.
