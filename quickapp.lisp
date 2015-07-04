@@ -223,7 +223,7 @@ appropriately"
 				(concatenate 'string "  -" (first argdef))
 				"  ")
 			(concatenate 'string "--" (second argdef))
-			(nth 3 argdef))))
+			(nth 2 argdef))))
 
 (defun generate-flag-string (arg-defs)
   (let ((l (+ 2 (loop for x in arg-defs
