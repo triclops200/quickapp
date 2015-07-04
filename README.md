@@ -19,7 +19,8 @@ For easy interactive development, just load the generated "slime.lisp" file then
 ```
 
 # Arg parsing utilities
-This library also contains two functions for dealing with argument handling for the application generated
+This library also contains two functions for dealing with argument handling for the generated application: parse-args and generate-flag-string.
+
 An example usage is shown below
 
 ```lisp
