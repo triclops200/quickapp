@@ -18,6 +18,47 @@ For easy interactive development, just load the generated "slime.lisp" file then
 (in-package :<YOUR PACKAGE NAME>)
 ```
 
+# Arg parsing utilities
+This library also contains two functions for dealing with argument handling for the generated application: parse-args and generate-flag-string.
+
+An example usage is shown below
+
+```lisp
+(defun -main (&optional args)
+  "Entry point"
+  (let* ((arg-defs '(("h" "help" "Display this help menu")
+	          ("d" "dependencies" "(:dep1 [:dep2 ...])" "The dependencies")
+	          ("p" "project-name" "NAME" "The project name")
+	          ("a" "project-author" "NAME" "The name of the author")
+	          ("s" "project-description" "DESCRIPTION" "The project description")
+	          ("e" "executable-name" "NAME" "The executable name")))
+         (parsed-args (quickapp:parse-args arg-defs (cdr args))))
+	  (if (or (/= (length (first parsed-args)) 1)
+	          (assoc "help" (second parsed-args) :test #'string=))
+		  (progn (format t "Usage: ~a PROJECT-PATH [OPTIONS]~%OPTIONS:~%~a~%~a~%~a~a~%~a~%~a~%"
+			       (first args)
+			       (quickapp:generate-flag-string arg-defs)
+			       "Example Usage: " (first args) " test-project \\"
+			       "  -d\"(:sdl2 :cl-opengl)\" \\"
+			       "  --project-author=cluser"))
+		  (format t "~a~%" parsed-args))))
+```
+
+Running that application with the --help flag results in:
+```
+Usage: ./quickapp PROJECT-PATH [OPTIONS]
+OPTIONS:
+  -h  --help                              
+  -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
+  -p  --project-name=NAME                 The project name
+  -a  --project-author=NAME               The name of the author
+  -s  --project-description=DESCRIPTION   The project description
+  -e  --executable-name=NAME              The executable name
+
+Example Usage: 
+./quickapp test-project \
+  -d"(:sdl2 :cl-opengl)" \
+  ```
 
 #License
 Licensed under Modified BSD License.
