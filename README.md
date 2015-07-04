@@ -44,6 +44,22 @@ An example usage is shown below
 		  (format t "~a~%" parsed-args))))
 ```
 
+Running that application with the --help flag results in:
+```
+Usage: ./quickapp PROJECT-PATH [OPTIONS]
+OPTIONS:
+  -h  --help                              
+  -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
+  -p  --project-name=NAME                 The project name
+  -a  --project-author=NAME               The name of the author
+  -s  --project-description=DESCRIPTION   The project description
+  -e  --executable-name=NAME              The executable name
+
+Example Usage: 
+./quickapp test-project \
+  -d"(:sdl2 :cl-opengl)" \
+  ```
+
 #License
 Licensed under Modified BSD License.
 
