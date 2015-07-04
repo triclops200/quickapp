@@ -7,4 +7,6 @@
   (:export get-executable)
   (:export get-project-description)
   (:export get-project-author)
-  (:export get-dependencies))
+  (:export get-dependencies)
+  (:export parse-args)
+  (:export generate-flag-string))
