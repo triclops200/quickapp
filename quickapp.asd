@@ -8,5 +8,6 @@
   :depends-on ()
   :pathname "./"
   :components ((:file "package")
-			   (:file "quickapp")))
+			   (:file "quickapp")
+			   (:file "argument-parsing")))
 
