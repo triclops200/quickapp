@@ -1,6 +1,6 @@
 # quickapp
 A common lisp project for generating template projects that use sbcl and buildapp
-
+See https://github.com/triclops200/quickapp-cli for the command line standalone utility.
 Exmaple usage
 ```lisp
 (ql:quickload :quickapp)
