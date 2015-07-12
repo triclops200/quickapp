@@ -1,7 +1,9 @@
 # quickapp
 A common lisp project for generating template projects that use sbcl and buildapp
+
 See https://github.com/triclops200/quickapp-cli for the command line standalone utility.
-Exmaple usage
+
+# Exmaple usage
 ```lisp
 (ql:quickload :quickapp)
 (quickapp:quickapp
@@ -14,8 +16,9 @@ Exmaple usage
 ```
 This creates the needed files and Makefile as well as a template project.
 
-For easy interactive development, just load the generated "slime.lisp" file then do
+For easy interactive development in slime, just do (assuming one is in their generated project directory):
 ```lisp
+(load "slime.lisp")
 (in-package :<YOUR PACKAGE NAME>)
 ```
 
