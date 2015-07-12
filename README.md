@@ -3,6 +3,7 @@ A common lisp project for generating template projects that use sbcl and buildap
 
 Exmaple usage
 ```lisp
+(ql:quickload :quickapp)
 (quickapp:quickapp
           "src/lisp/test-project"
           :project-name "test-project" 
