@@ -52,23 +52,24 @@ An example usage is shown below
 ```
 
 Running that application with the --help flag results in:
-```
-Usage: ./quickapp PROJECT-PATH [OPTIONS]
-OPTIONS:
-  -h  --help                              Display this help menu
-  -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
-  -p  --project-name=NAME                 The project name
-  -a  --project-author=NAME               The name of the author
-  -s  --project-description=DESCRIPTION   The project description
-  -e  --executable-name=NAME              The executable name
 
-Example Usage: 
-./quickapp test-project \
-  -d"(:sdl2 :cl-opengl)" \
-  --project-author=cluser
-  ```
+    Usage: ./quickapp PROJECT-PATH [OPTIONS]
+    OPTIONS:
+      -h  --help                              Display this help menu
+      -d  --dependencies=(:dep1 [:dep2 ...])  The dependencies
+      -p  --project-name=NAME                 The project name
+      -a  --project-author=NAME               The name of the author
+      -s  --project-description=DESCRIPTION   The project description
+      -e  --executable-name=NAME              The executable name
+
+    Example Usage: 
+    ./quickapp test-project \
+      -d"(:sdl2 :cl-opengl)" \
+      --project-author=cluser
+  
 Running this command: `./quickapp test-project -d"(:sdl2 :cl-opengl)" --project-author=cluser`
 results in this list returned as parsed-args
+
 ```lisp
 (("test-project")
  (("project-author" . "cluser") ("dependencies" . "(:sdl2 :cl-opengl)")))
