@@ -54,6 +54,9 @@
 (defun get-dependencies ()
   (format nil "~{:~a~%~}" *project-dependencies*))
 
+(defun get-utils ()
+  (format nil "~a.app-utils" (get-project)))
+
 (defvar *project-name* "test")
 (defvar *executable-name* "test")
 (defvar *project-description* "test")
@@ -100,7 +103,7 @@
                                              project-path))
     (do-templates project-path
       `(("Makefile.template")
-        ("package.lisp.template")
-        ("project.asd.template"  ,*project-name*)
-        ("project.lisp.template" ,*project-name*)
-        ("slime.lisp.template")))))
+        ("project.asd.template"  ,(get-project))
+        ("project.lisp.template" ,(get-project))
+        ("slime.lisp.template")
+        ("app-utils.lisp.template")))))

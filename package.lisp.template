@@ -1,7 +1,0 @@
-;;;; package.lisp
-
-(defpackage #:#(quickapp:get-project)
-  (:use #:cl)
-  (:export #:-main)
-  (:export #:disable-debugger))
-

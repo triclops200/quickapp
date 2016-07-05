@@ -1,5 +1,6 @@
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 PACKAGE=#(quickapp:get-project)
+PACKAGEUTILS=#(quickapp:get-utils)
 OUT=#(quickapp:get-executable)
 ENTRY=-main
 
@@ -8,7 +9,7 @@ $(OUT): buildapp *.lisp quicklisp-manifest.txt
 				--load-system asdf \
 				--eval '(push "$(ROOT_DIR)/" asdf:*central-registry*)' \
 				--load-system $(PACKAGE) \
-				--eval '($(PACKAGE):disable-debugger)' \
+				--eval '($(PACKAGEUTILS)::internal-disable-debugger)' \
 				--output $(OUT) --entry $(PACKAGE):$(ENTRY)
 
 quicklisp-manifest.txt: *.asd

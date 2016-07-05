@@ -5,6 +5,7 @@
   (:export quickapp)
   (:export get-project)
   (:export get-executable)
+  (:export get-utils)
   (:export get-project-description)
   (:export get-project-author)
   (:export get-dependencies)

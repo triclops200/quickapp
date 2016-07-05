@@ -1,12 +1,13 @@
 ;;;; #(quickapp:get-project).asd
 
 (asdf:defsystem #:#(quickapp:get-project)
-  :description "#(quickapp:get-project-description)"
-  :author "#(quickapp:get-project-author)"
-  :license "Modified BSD License"
-  :serial t
-  :depends-on (#(quickapp:get-dependencies))
-  :pathname "./"
-  :components ((:file "package")
-  			   (:file "#(quickapp:get-project)")))
+                :description "#(quickapp:get-project-description)"
+                :author "#(quickapp:get-project-author)"
+                :license "Modified BSD License"
+                :serial t
+                :depends-on (#(quickapp:get-dependencies))
+                :pathname "./"
+                :components ((:file "app-utils")
+                             (:file "#(quickapp:get-project)")
+                             ))
 
